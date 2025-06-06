@@ -1,0 +1,32 @@
+---
+layout: post
+title: Group 1 title of your final project
+date: 2025-04-18 13:32:20 +0300
+description: Project description # Add post description (optional)
+img: how-to-start.png # Add image post (optional), put your image in assets/img/
+fig-caption: # Add figcaption (optional)
+tags: [Projects]
+---
+
+## Final project title
+
+You can use markdown to fill your project page.
+
+- Add a brief description of your project.
+
+Put your images in the assets/img folder. Then, you can add them in this way:
+
+![My Figure]({{site.baseurl}}/assets/img/we-in-rest.jpg)
+
+## Authors
+ - First Name, Last Name
+ - First Name, Last Name
+
+## Dataset
+A brief description of your dataset: number of images, application, image size, etc.
+
+## Model(s)
+Present the model(s) used in your experiments as well as the experimental protocol followed.
+
+## Results
+Show your results and comment them briefly.
