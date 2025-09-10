@@ -54,7 +54,7 @@ I compared both **classical deep SR models** and **GAN-based approaches**:
   A GAN-based model that focuses on realism and textures. It uses Residual-in-Residual Dense Blocks (RRDB) and a perceptual loss based on VGG19 features.  
   It often produces visually sharper results, though sometimes at the cost of pixel-accuracy.  
 
-![ESRGAN Architecture]({{site.baseurl}}/assets/img/group1/architecture.png)
+![ESRGAN Architecture]({{site.baseurl}}/assets/img/group1/architecture.webp)
 *ESRGAN Architecture*
 
 ---
