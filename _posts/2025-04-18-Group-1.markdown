@@ -17,12 +17,12 @@ I used the [**SEN2VENµS dataset**](https://zenodo.org/records/14603764), which 
 It provides **paired Sentinel-2 and VENµS observations** across 29 global sites.  
 
 For my experiments, I picked **6 representative sites**:  
-- ALSACE (France)  
-- ANJI (China)  
-- BENGA (Africa)  
-- LERIDA-1 (Spain)  
-- NARYN (Kyrgyzstan)  
-- SO2 (Israel)  
+- ALSACE (France, Alsace)
+- ANJI (China, Zhejiang Sheng)
+- BENGA (India, West Bengal)
+- LERIDA-1 (Spain, Catalonia)
+- NARYN (Kyrgyzstan, Naryn)
+- SO2 (France, Midi-Pyrénées)
 
 To make the evaluation fair, I split the data **by site** (so there’s no spatial overlap):  
 - **Train:** 12,355 pairs (~70%)  
