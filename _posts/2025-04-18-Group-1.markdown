@@ -8,15 +8,6 @@ fig-caption: Qualitative results of super-resolution on multispectral satellite 
 tags: [Projects]
 ---
 
-## Image Super-Resolution using Generative Models on the SEN2VENµS Dataset
-
-You can use markdown to fill your project page.
-
-- Add a brief description of your project.
-
-Put your images in the assets/img folder. Then, you can add them in this way:
-
-![My Figure]({{site.baseurl}}/assets/img/we-in-rest.jpg)
 
 ## Author
 - **Debwashis Borman**
