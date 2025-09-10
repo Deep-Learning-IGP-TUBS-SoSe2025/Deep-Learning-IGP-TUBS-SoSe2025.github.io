@@ -130,6 +130,6 @@ I evaluated the models in two ways:
 
 ## Final Note
 This project was a great learning experience – from handling **multispectral remote sensing data** to adapting **GANs for SR tasks**.  
-As the sole author, I built everything from dataset preparation to model training and evaluation, and I’m excited to share the results here. 🚀
+As the sole author, I built everything from dataset preparation to model training and evaluation, and I’m excited to share the results here.
 
 ---
