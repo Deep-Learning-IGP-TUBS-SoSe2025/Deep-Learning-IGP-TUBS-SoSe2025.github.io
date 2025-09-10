@@ -2,9 +2,9 @@
 layout: post
 title: Image Super-Resolution using Generative Models on the SEN2VENµS Dataset
 date: 2025-04-18 13:32:20 +0300
-description: Project description # Add post description (optional)
-img: how-to-start.jpg # Add image post (optional), put your image in assets/img/
-fig-caption: # Add figcaption (optional)
+description: Applying generative models to boost the resolution of Sentinel-2 images with the SEN2VENµS dataset. # Add post description (optional)
+img: group-1-cover.png # Add image post (optional), put your image in assets/img/
+fig-caption: Qualitative results of super-resolution on multispectral satellite imagery. # Add figcaption (optional)
 tags: [Projects]
 ---
 
