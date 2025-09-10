@@ -37,7 +37,8 @@ To make the evaluation fair, I split the data **by site** (so there’s no spati
 - **4× Super-Resolution**  
   - Input: Sentinel-2 Red Edge bands (20m)  
   - Target: VENµS (5m)  
-
+![  Data Visualization ]({{site.baseurl}}/assets/img/group1/Sample.png)
+*Data Visualization after extraction and Processing*
 ---
 
 ## Models
@@ -53,10 +54,8 @@ I compared both **classical deep SR models** and **GAN-based approaches**:
   A GAN-based model that focuses on realism and textures. It uses Residual-in-Residual Dense Blocks (RRDB) and a perceptual loss based on VGG19 features.  
   It often produces visually sharper results, though sometimes at the cost of pixel-accuracy.  
 
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/d68e9d7f-eea6-4d5f-8c5c-b8e104492b16" width="600"/>  
-  <br/> ESRGAN Generator with Residual-in-Residual Dense Blocks (RRDB).
-</p>
+![]({{site.baseurl}}/assets/img/group1/architecture.png)
+*ESRGAN Architecture*
 
 ---
 
@@ -91,24 +90,18 @@ I evaluated the models in two ways:
 
 **2× RGB bands:**
 
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/74a47627-9bb3-49bd-b2f7-d6803c0b77e4" width="800"/>  
-  <br/> HR with ROI (left) and crops from HR, LR, SRCNN, RCAN, ESRGAN (right).
-</p>
+![2x RGB Results]({{site.baseurl}}/assets/img/group1/Result-RGB.png)
+*HR with ROI (left) and crops from HR, LR, SRCNN, RCAN, ESRGAN (right).*
 
 **2× NIRG bands:**
 
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/8cdcda6d-b3de-4aef-9ab7-a12b1442ec3d" width="800"/>  
-  <br/> Comparison on NIRG bands.
-</p>
+![2x NIRG Results]({{site.baseurl}}/assets/img/group1/Result-NIRG.png)
+*Comparison on NIRG bands.*
 
 **4× Red Edge (5-6-7 bands):**
 
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/b20155bc-b03c-4442-a587-0d8bf8fa31c6" width="800"/>  
-  <br/> Comparison on 5-6-7 bands.
-</p>
+![4x Red Edge Results]({{site.baseurl}}/assets/img/group1/Result-567.png)
+*Comparison on 5-6-7 bands.*
 
 ---
 
