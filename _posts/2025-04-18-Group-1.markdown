@@ -36,7 +36,8 @@ To make the evaluation fair, I split the data **by site** (so there’s no spati
 
 - **4× Super-Resolution**  
   - Input: Sentinel-2 Red Edge bands (20m)  
-  - Target: VENµS (5m)  
+  - Target: VENµS (5m)
+
 ![  Data Visualization ]({{site.baseurl}}/assets/img/group1/Sample.png)
 *Data Visualization after extraction and Processing*
 
