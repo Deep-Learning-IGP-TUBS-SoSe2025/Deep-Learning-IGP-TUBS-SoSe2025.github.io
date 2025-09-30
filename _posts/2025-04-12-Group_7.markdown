@@ -8,25 +8,25 @@ fig-caption: # Add figcaption (optional)
 tags: [Projects]
 ---
 
-## Final project title
+## Final Automated Hole Detection in Aerial Image Patches: A Deep Learning-based Classification
 
-You can use markdown to fill your project page.
-
-- Add a brief description of your project.
-
-Put your images in the assets/img folder. Then, you can add them in this way:
-
-![My Figure]({{site.baseurl}}/assets/img/we-in-rest.jpg)
+- Our project focuses on automated detection of underground hamster holes from aerial imagery. The main challenge addressed is the high class imbalance between "hole" and "no-hole" samples, as well as generalization across different landscapes (e.g., grassland, farmland, sand). We designed an end-to-end pipeline including patch generation, preprocessing, augmentation, model training, and evaluation.
 
 ## Authors
- - First Name, Last Name
- - First Name, Last Name
+ - Divesh, Chonkar
+ - Jackson, Ferrao
 
 ## Dataset
-A brief description of your dataset: number of images, application, image size, etc.
+We worked with aerial mosaics covering habitats of the European hamster in Braunschweig, Germany. The raw high-resolution raster images were sliced into patches of size 224x224, 288x288, 320x320 pixels depending on the model. After preprocessing, augmentation, and balancing, the final dataset contained ~8,500 training patches, ~2,000 validation patches, and ~2,200 test patches. Classes were "hole" and "no-hole." Apart from this we also utilised two more datasets for generalisation which we unseen for the model.
 
 ## Model(s)
-Present the model(s) used in your experiments as well as the experimental protocol followed.
+We experimented with multiple convolutional and transformer-based architectures, including MobileNetV2, EfficientNet-B2, ConvNeXt-Tiny, Masked Autoencoder (MAE), and DINOv2. Each model was fine-tuned on our dataset using PyTorch. We applied early stopping, OneCycleLR scheduling, and label smoothing to improve generalization. The best performance was achieved with DINOv2, which demonstrated strong accuracy and robustness across terrains.
 
 ## Results
-Show your results and comment them briefly.
+Our experiments highlight both the strengths and limitations of the DINOv2 model for hole detection:
+- Test Set (Lamme): DINOv2 achieved 96% overall accuracy with balanced precision/recall on the “Hole” class, confirming strong in-distribution performance. ![Test set performance of all evaluated models]({{site.baseurl}}/assets/img/test_set_results.png)
+- Leiferde (Unseen Landscape): The model successfully detected 6 out of 9 holes (~67% recall, per-class accuracy 66.7%), showing that DINOv2 can generalize to similar terrains. However, the precision was very low (0.03), reflecting many false positives. This trade-off may still be acceptable in applications where missing a hole is more critical than raising false alarms. ![DINOv2 Results Leiferde]({{site.baseurl}}/assets/img/DINOv2_Results_Leiferde_Landscape.png)
+- Broitzem (Unseen Landscape): Performance dropped sharply, with only 1 out of 15 holes detected (~7% recall, per-class accuracy 6.7%). While “No Hole” predictions remained near-perfect, the model struggled with the minority class under domain shifts, likely due to terrain differences and the very small number of annotated holes. 
+![DINOv2 Results Broitzem]({{site.baseurl}}/assets/img/DINOv2_Results_Broitzem_Landscape.png)
+
+Summary: DINOv2 demonstrates strong accuracy on the test set and promising generalisation to landscapes similar to the training domain, but its robustness is limited when applied to significantly different terrains ![ Performance on Unseen Dataset]({{site.baseurl}}/assets/img/Generalisation_performance.png). Future improvements will focus on mitigating class imbalance, enriching training data with diverse environments, and exploring domain adaptation techniques to close this gap.
