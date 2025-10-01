@@ -2,8 +2,8 @@
 layout: post
 title: "Group 7 Automated Hole Detection in Aerial Image Patches: A Deep Learning-based Classification"
 date: 2025-04-12 13:32:20 +0300
-description: "End-to-end pipeline for automated classificatoin of underground hamster holes in aerial imagery using CNN and Transformer architectures."
-img:
+description: "End-to-end pipeline for automated classification of underground hamster holes in aerial imagery using CNN and Transformer architectures."
+img: 
 fig-caption:
 tags: [Projects]
 ---
@@ -17,16 +17,16 @@ tags: [Projects]
  - Jackson, Ferrao
 
 ## Dataset
-We worked with aerial mosaics covering habitats of the European hamster in Braunschweig, Germany. The raw high-resolution raster images were sliced into patches of size 224x224, 288x288, 320x320 pixels depending on the model. After preprocessing, augmentation, and balancing, the final dataset contained ~8,500 training patches, ~2,000 validation patches, and ~2,200 test patches. Classes were "hole" and "no-hole." Apart from this we also utilised two more datasets for generalisation which we unseen for the model.
+We worked with aerial mosaics covering habitats of the European hamster in Braunschweig, Germany. The raw high-resolution raster images were sliced into patches of size 224x224, 288x288, 320x320 pixels, depending on the model. After preprocessing, augmentation, and balancing, the final dataset contained ~8,500 training patches, ~2,000 validation patches, and ~2,200 test patches. Classes were "hole" and "no-hole." Apart from this, we also utilised two more datasets for generalisation which we unseen for the model.
 
 ## Model(s)
 We experimented with multiple convolutional and transformer-based architectures, including MobileNetV2, EfficientNet-B2, ConvNeXt-Tiny, Masked Autoencoder (MAE), and DINOv2. Each model was fine-tuned on our dataset using PyTorch. We applied early stopping, OneCycleLR scheduling, and label smoothing to improve generalization. The best performance was achieved with DINOv2, which demonstrated strong accuracy and robustness across terrains.
 
 ## Results
 Our experiments highlight both the strengths and limitations of the DINOv2 model for hole detection:
-- Test Set (Lamme): DINOv2 achieved ~90% overall accuracy with balanced precision/recall on the “Hole” class, confirming strong in-distribution performance. ![Test set performance of all evaluated models]({{site.baseurl}}/assets/img/test_set_results.png)
-- Leiferde (Unseen Landscape): The model successfully detected 6 out of 9 holes (~67% recall, per-class accuracy 66.7%), showing that DINOv2 can generalize to similar terrains. However, the precision was very low (0.03), reflecting many false positives. This trade-off may still be acceptable in applications where missing a hole is more critical than raising false alarms. ![DINOv2 Results Leiferde]({{site.baseurl}}/assets/img/DINOv2_Results_Leiferde_Landscape.png)
+- Test Set (Lamme): DINOv2 achieved ~90% overall accuracy with balanced precision/recall on the “Hole” class, confirming strong in-distribution performance. ![Test set performance of all evaluated models]({{site.baseurl}}/assets/img/group_7/test_set_results.png)
+- Leiferde (Unseen Landscape): The model successfully detected 6 out of 9 holes (~67% recall, per-class accuracy 66.7%), showing that DINOv2 can generalize to similar terrains. However, the precision was very low (0.03), reflecting many false positives. This trade-off may still be acceptable in applications where missing a hole is more critical than raising false alarms. ![DINOv2 Results Leiferde]({{site.baseurl}}/assets/img/group_7/DINOv2_Results_Leiferde_Landscape.png)
 - Broitzem (Unseen Landscape): Performance dropped sharply, with only 1 out of 15 holes detected (~7% recall, per-class accuracy 6.7%). While “No Hole” predictions remained near-perfect, the model struggled with the minority class under domain shifts, likely due to terrain differences and the very small number of annotated holes. 
-![DINOv2 Results Broitzem]({{site.baseurl}}/assets/img/DINOv2_Results_Broitzem_Landscape.png)
+![DINOv2 Results Broitzem]({{site.baseurl}}/assets/img/group_7/DINOv2_Results_Broitzem_Landscape.png)
 
-Summary: DINOv2 demonstrates strong accuracy on the test set and promising generalisation to landscapes similar to the training domain, but its robustness is limited when applied to significantly different terrains ![ Performance on Unseen Dataset]({{site.baseurl}}/assets/img/Generalisation_performance.png). Future improvements will focus on mitigating class imbalance, enriching training data with diverse environments, and exploring domain adaptation techniques to close this gap.
+Summary: DINOv2 demonstrates strong accuracy on the test set and promising generalisation to landscapes similar to the training domain, but its robustness is limited when applied to significantly different terrains ![ Performance on Unseen Dataset]({{site.baseurl}}/assets/img/group_7/Generalisation_performance.png). Future improvements will focus on mitigating class imbalance, enriching training data with diverse environments, and exploring domain adaptation techniques to close this gap.
