@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "Group 7 Automated Hole Detection in Aerial Image Patches: A Deep Learning-based Classification"
+title: "Automated Hole Detection in Aerial Image Patches: A Deep Learning-based Classification"
 date: 2025-04-12 13:32:20 +0300
 description: "End-to-end pipeline for automated classification of underground hamster holes in aerial imagery using CNN and Transformer architectures."
-img: 
+img: software.jpg
 fig-caption:
 tags: [Projects]
 ---
