@@ -3,7 +3,7 @@ layout: post
 title: Dense object counting with YOLO variants on the CARPK dataset
 date: 2025-04-16 13:32:20 +0300
 description: Project description # Add post description (optional)
-img: how-to-start.jpg # Add image post (optional), put your image in assets/img/
+img: group-3-cover.png # Add image post (optional), put your image in assets/img/
 fig-caption: # Add figcaption (optional)
 tags: [Projects]
 ---
