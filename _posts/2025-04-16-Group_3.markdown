@@ -8,8 +8,6 @@ fig-caption: # Add figcaption (optional)
 tags: [Projects]
 ---
 
-![My Figure]({{site.baseurl}}/assets/img/we-in-rest.jpg)
-
 ## Authors
  - Lu Xu
  - Mohammad Rezaei
@@ -26,9 +24,7 @@ We use the [**CARPK**](https://lafi.github.io/LPN/) dataset (1,448 high-resoluti
 - **Counting:** **MAE**, **RMSE**  
 - **Fitness (for HPO):**  
 
-$$
-S = 0.4 \cdot S_{mAP@0.5} \;+\; 0.3 \cdot \frac{1}{1+\text{MAE}} \;+\; 0.3 \cdot \frac{1}{1+\text{RMSE}}
-$$
+$$S = 0.4 \cdot S_{mAP@0.5} \;+\; 0.3 \cdot \frac{1}{1+\text{MAE}} \;+\; 0.3 \cdot \frac{1}{1+\text{RMSE}}$$
 
 This nudges the search toward **lower counting error** while preserving detection quality.
 
