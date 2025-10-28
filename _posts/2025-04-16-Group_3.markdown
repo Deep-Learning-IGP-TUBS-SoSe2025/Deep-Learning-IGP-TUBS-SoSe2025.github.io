@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Group 3 title of your final project
+title: Dense object counting with YOLO variants on the CARPK dataset
 date: 2025-04-16 13:32:20 +0300
 description: Project description # Add post description (optional)
 img: how-to-start.jpg # Add image post (optional), put your image in assets/img/
@@ -8,25 +8,54 @@ fig-caption: # Add figcaption (optional)
 tags: [Projects]
 ---
 
-## Final project title
-
-You can use markdown to fill your project page.
-
-- Add a brief description of your project.
-
-Put your images in the assets/img folder. Then, you can add them in this way:
-
 ![My Figure]({{site.baseurl}}/assets/img/we-in-rest.jpg)
 
 ## Authors
- - First Name, Last Name
- - First Name, Last Name
+ - Lu Xu
+ - Mohammad Rezaei
 
 ## Dataset
-A brief description of your dataset: number of images, application, image size, etc.
+We use the [**CARPK**](https://lafi.github.io/LPN/) dataset (1,448 high-resolution drone images, 89,774 car boxes) with predefined train/test splits and an additional validation split (20% of train). We convert annotations to **COCO** and then **YOLO** formats for training.
+- Train: **791** images
+- Val: **198** images
+- Test: **459** images
+
+## Metrics & Fitness
+
+- **Detection:** Precision, Recall, IoU, mAP@0.5 / mAP@0.5:0.95  
+- **Counting:** **MAE**, **RMSE**  
+- **Fitness (for HPO):**  
+
+$$
+S = 0.4 \cdot S_{mAP@0.5} \;+\; 0.3 \cdot \frac{1}{1+\text{MAE}} \;+\; 0.3 \cdot \frac{1}{1+\text{RMSE}}
+$$
+
+This nudges the search toward **lower counting error** while preserving detection quality.
 
 ## Model(s)
-Present the model(s) used in your experiments as well as the experimental protocol followed.
+This work investigates **YOLOv3, YOLOv5, and YOLOv8** for **object detection** and **dense object counting** on the **CARPK** drone dataset. We train baselines, run hyperparameter evolution, and evaluate both standard detection metrics (Precision/Recall/mAP/IoU) and counting metrics (**MAE**, **RMSE**). We also define a **custom fitness score** that balances detection and counting performance during HPO.
 
 ## Results
-Show your results and comment them briefly.
+
+### Hyperparameter evolution
+The results of the hyperparameter evolution for the YOLOv5 model are presented below as a representative example:
+
+![Hyperparameters]({{site.baseurl}}/assets/img/group3/1_hyperparameters.png)
+
+### Impact of data augmentation
+Weak augmentation:
+
+![Weak Augmentation]({{site.baseurl}}/assets/img/group3/2_weak_augmentation.png)
+
+Strong augmentation:
+
+![Strong Augmentation]({{site.baseurl}}/assets/img/group3/3_strong_augmentation.png)
+
+### Models performance
+
+The table below compares the counting performance of YOLO models against the initial benchmark.
+
+|Metric|Benchmark|YOLOv3|YOLOv5|YOLOv8|
+|:-:|:-:|:-:|:-:|:-:|
+|Test MAE|23.80|24.01|4.84|4.65|
+|Test RMSE|36.79|30.37|6.50|6.41|
