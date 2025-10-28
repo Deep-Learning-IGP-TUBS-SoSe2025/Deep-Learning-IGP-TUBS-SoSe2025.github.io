@@ -1,32 +1,46 @@
 ---
 layout: post
-title: Group 4 title of your final project
+title: Surface defect detection
 date: 2025-04-15 13:32:20 +0300
 description: Project description # Add post description (optional)
-img: how-to-start.jpg # Add image post (optional), put your image in assets/img/
+img: group-4-cover.png # Add image post (optional), put your image in assets/img/
 fig-caption: # Add figcaption (optional)
 tags: [Projects]
 ---
 
-## Final project title
-
-You can use markdown to fill your project page.
-
-- Add a brief description of your project.
-
-Put your images in the assets/img folder. Then, you can add them in this way:
-
-![My Figure]({{site.baseurl}}/assets/img/we-in-rest.jpg)
-
 ## Authors
- - First Name, Last Name
- - First Name, Last Name
+ - Srishti, Patwal
+ - Dixit, Rikhari
 
 ## Dataset
-A brief description of your dataset: number of images, application, image size, etc.
+The dataset used in our experiments is [KolektorSDD2](https://www.vicos.si/resources/kolektorsdd2/).  
+- Contains high-resolution surface defect images from industrial settings.  
+- Includes **defective** (positive) and **non-defective** (negative) samples.  
+- Images were cropped into **256×256 patches**.  
+- Data imbalance tackled via **positive-centered sampling and augmentation**.  
 
 ## Model(s)
-Present the model(s) used in your experiments as well as the experimental protocol followed.
+We employed a **model zoo of segmentation architectures**:  
+- FCN-ResNet50  
+- U-Net (ResNet50 backbone)  
+- DeepLabV3-ResNet50  
+- SegFormer-B0  
+
+Each model was trained with **Dice + BCE combo loss**, dynamic positive weighting, and discriminative learning rates.  
 
 ## Results
-Show your results and comment them briefly.
+Quantitative results. All models were trained with dynamic positive weighting. The best results per column are highlighted in **bold**.
+
+![Segmentation results metrics]({{site.baseurl}}/assets/img/group4/results_metrics.png)
+
+Qualitative results. From left to right: input, ground truth, and predictions and overlays from FCN-R50, U-Net-R50, DeepLabV3-R50, SegFormer-B0, with and without data augmentation. Overlay masks: True Positives (yellow), False Positives (red), and False Negatives (green).
+
+![Segmentation results]({{site.baseurl}}/assets/img/group4/results.png)
+
+
+Summary:  
+- **Best IoU & Dice** → FCN-ResNet50  
+- **Best Recall** → DeepLabV3-R50  
+- **Best Precision** → SegFormer-B0  
+- **U-Net** underperformed compared to other models.  
+
