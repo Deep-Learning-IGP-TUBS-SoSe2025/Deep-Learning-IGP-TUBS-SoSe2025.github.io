@@ -49,3 +49,5 @@ Below are the results under the **Light augmentation policy**, which yielded the
 
 - **YOLOv5:** Consistently strong precision-recall balance; custom anchors slightly improved recall and mAP@50 but with a small drop in precision.
 - **Faster R-CNN:** Recall-oriented; detects nearly all defects, but precision dropped sharply with custom anchors, indicating more false positives despite a gain in mAP@50.
+
+![My Figure]({{site.baseurl}}/assets/img/group5/1_results.png)
