@@ -1,0 +1,57 @@
+---
+layout: post
+title: "Comparing Deep CNNs and Vision Transformers for Crack Segmentation"
+date: 2025-04-11 13:32:20 +0300
+description: "Comparing Deep CNNs and Vision Transformers for Crack Segmentation"
+img: group-8-cover.png 
+fig-caption:
+tags: [Projects]
+---
+
+## Authors
+ - Ansh Kapoor
+
+## 📊 Dataset
+
+The dataset used in our experiments is **DeepCrack**:
+
+- **Size:** 537 RGB images (384×544 px)  
+- **Split:** 300 training, 237 testing  
+- **Imbalance:** ~3.5% crack pixels, max ~20% in some images  
+- **Application:** Pavement/road crack detection and segmentation  
+
+> Citation: Zou et al., *DeepCrack: Learning hierarchical convolutional features for crack detection*, Neurocomputing, 2019. [DOI](https://doi.org/10.1016/j.neucom.2019.01.036)
+
+## 🧠 Model(s)
+We implemented and compared the following models:
+
+- **CNN Baselines:** ResNet50-UNet, VGG19-UNet  
+- **Transformers:** SegFormer (B0), Swin Transformer (Small), Mask2Former (Swin-Small), UNetFormer (modified)  
+
+Each model was fine-tuned for binary crack segmentation. Loss function: Weighted BCE + Dice.  
+
+## 📈 Results
+Average performance metrics on the **DeepCrack test set**:
+
+| Model            | IoU   | Dice  | Precision | Recall | Accuracy |
+|------------------|-------|-------|-----------|--------|----------|
+| ResNet50-UNet    | 0.513 | 0.624 | 0.557     | 0.750  | 0.968    |
+| VGG19-UNet       | 0.465 | 0.587 | 0.506     | 0.749  | 0.961    |
+| SegFormer (B0)   | 0.596 | 0.682 | 0.694     | 0.698  | 0.976    |
+| Swin Transformer | 0.554 | 0.653 | 0.610     | 0.740  | 0.970    |
+| Mask2Former      | 0.520 | 0.625 | 0.550     | 0.773  | 0.965    |
+| UNetFormer       | **0.667** | **0.789** | 0.717     | **0.922** | **0.982** |
+
+Qualitative examples (best/worst cases):  
+
+![My Figure]({{site.baseurl}}/assets/img/group8/1_best.png)
+
+![My Figure]({{site.baseurl}}/assets/img/group8/2_worst.png)
+
+## 📌 Notes
+
+- Transformer-based models consistently outperformed CNN baselines.  
+- UNetFormer achieved the best overall results (highest IoU, Dice, Recall).  
+- SegFormer delivered the cleanest predictions (best Precision).  
+- Weighted BCE + Dice ensured high recall (fewer missed cracks), but slightly increased false positives.  
+- Some of the zip files containing prediction were not pushed due to github size constraints
