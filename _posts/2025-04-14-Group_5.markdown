@@ -1,32 +1,51 @@
 ---
 layout: post
-title: Group 5 title of your final project
+title: Evaluation of Object Detection Models for PCB Defect Detection
 date: 2025-04-14 13:32:20 +0300
 description: Project description # Add post description (optional)
-img: how-to-start.jpg # Add image post (optional), put your image in assets/img/
+img: group-5-cover.png # Add image post (optional), put your image in assets/img/
 fig-caption: # Add figcaption (optional)
 tags: [Projects]
 ---
 
-## Final project title
-
-You can use markdown to fill your project page.
-
-- Add a brief description of your project.
-
-Put your images in the assets/img folder. Then, you can add them in this way:
-
-![My Figure]({{site.baseurl}}/assets/img/we-in-rest.jpg)
-
 ## Authors
- - First Name, Last Name
- - First Name, Last Name
+ - Ashwin Girish
+ - Keerthiveettil Vivek
 
 ## Dataset
-A brief description of your dataset: number of images, application, image size, etc.
+The dataset used in our experiments is [**DeepPCB**](https://github.com/tangsanli5201/DeepPCB).  
+- **Size:** 1,500 image pairs (train: 1,000, test: 500)  
+- **Resolution:** 640×640 cropped from ~16k×16k scans  
+- **Classes:** Six PCB defect types — open, short, mousebite, spur, copper, and pin-hole.  
+- **Format:** Each test image is annotated with bounding boxes in VOC/YOLO format.  
 
 ## Model(s)
-Present the model(s) used in your experiments as well as the experimental protocol followed.
+The project benchmarks three families of detectors:  
 
-## Results
-Show your results and comment them briefly.
+- **YOLO (v5 & v11):** Anchor-based (v5) and anchor-free (v11) single-stage detectors.  
+- **Faster R-CNN:** Two-stage detector with Region Proposal Network (RPN).  
+- **DETR:** Transformer-based end-to-end detector without anchors.  
+
+##  Results (Light Augmentation)
+
+Below are the results under the **Light augmentation policy**, which yielded the best overall performance across models:  
+
+| Model       | Epochs | Precision | Recall | mAP@50 |
+|-------------|--------|-----------|--------|--------|
+| **YOLOv11** | 50     | 0.937     | 0.930  | **0.964** |
+| **Faster R-CNN** | 50 | 0.847     | 0.959  | **0.926** |
+| **DETR**    | 50     | 0.978     | 0.978  | **0.932** |
+
+- **YOLOv11:** Best overall balance, achieving the highest mAP@50.  
+- **Faster R-CNN:** Recall-heavy, detects most defects but generates more false positives.  
+- **DETR:** Very strong precision and recall, but slightly weaker mAP due to localization issues.  
+
+## Results (Anchor experiments)
+
+| Model        | Epochs | Precision (Default) | Recall (Default) | mAP@50 (Default) | Precision (Custom) | Recall (Custom) | mAP@50 (Custom) |
+|--------------|--------|----------------------|------------------|------------------|--------------------|-----------------|-----------------|
+| **YOLOv5**       | 50     | 0.954                | 0.919            | **0.962**            | 0.948              | 0.935           | 0.967           |
+| **Faster R-CNN** | 50     | 0.894                | 0.965            | 0.955            | 0.828              | 0.974           | **0.969**           |
+
+- **YOLOv5:** Consistently strong precision-recall balance; custom anchors slightly improved recall and mAP@50 but with a small drop in precision.
+- **Faster R-CNN:** Recall-oriented; detects nearly all defects, but precision dropped sharply with custom anchors, indicating more false positives despite a gain in mAP@50.
